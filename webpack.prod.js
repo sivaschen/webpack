@@ -7,6 +7,9 @@ const MiniExtractCssPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+
+
 const setMPA = () => {
     const entry = {};
     const htmlWebpackPlugins = [];
@@ -20,14 +23,14 @@ const setMPA = () => {
                 new HtmlWebpackPlugin({
                     template: path.join(__dirname, `src/${pageName}/index.html`),
                     inject: true,
-                    chunks:[pageName],
+                    chunks:['vendors', pageName],
                     filename: `${pageName}.html`,
                     minify: {
                         html5: true,
                         collapseWhitespace: true,
                         preserveLineBreaks: false,
                         minifyCSS: true,
-                        minifyJS:  true,
+                        minifyJS: true,
                         removeComments: false
                     }
                 })
@@ -42,7 +45,7 @@ const { entry, htmlWebpackPlugins} = setMPA();
 
 module.exports = {
     entry: entry,
-    mode: 'none',
+    mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name]_[chunkhash:8].js'
@@ -103,7 +106,31 @@ module.exports = {
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano')
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackExternalsPlugin({
+            externals:[
+                {
+                    module:'react',
+                    entry:'//11.url.cn/now/lib/15.1.0/react-with-addons.min.js?_bid=3123',
+                    global:'React'
+                },{
+                    module:'react-dom',
+                    entry:'//11.url.cn/now/lib/15.1.0/react-dom.min.js?_bid=3123',
+                    global:'ReactDOM'
+                }
+            ]
+        })
     ].concat(htmlWebpackPlugins),
-    devtool: 'inline-source-map'
+    optimization: {
+      splitChunks: {
+          minSize: 0,
+          cacheGroups: {
+              commons: {
+                  name: 'commons',
+                  chunks: 'all',
+                  minChunks: 2
+              }
+          }
+      }  
+    }
 }
