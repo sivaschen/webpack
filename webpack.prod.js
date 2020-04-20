@@ -111,11 +111,11 @@ module.exports = {
             externals:[
                 {
                     module:'react',
-                    entry:'//11.url.cn/now/lib/15.1.0/react-with-addons.min.js?_bid=3123',
+                    entry:'http://11.url.cn/now/lib/15.1.0/react-with-addons.min.js?_bid=3123',
                     global:'React'
                 },{
                     module:'react-dom',
-                    entry:'//11.url.cn/now/lib/15.1.0/react-dom.min.js?_bid=3123',
+                    entry:'http://11.url.cn/now/lib/15.1.0/react-dom.min.js?_bid=3123',
                     global:'ReactDOM'
                 }
             ]
