@@ -1,7 +1,6 @@
 'use strict'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import './search.less'
 import testimg from './test.gif'
 import './../../common/index.js'
@@ -34,7 +33,4 @@ class Search extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <Search/>,
-    document.getElementById('root')
-)
+module.exports = Search
