@@ -16,7 +16,7 @@ const setMPA = () => {
     const entryFiles = glob.sync(path.join(__dirname, './src/*/index-server.js'));
     Object.keys(entryFiles).map(index => {
             const entryFile = entryFiles[index]; 
-            const match = entryFile.match(/src\/(.*)\/index\.js/);
+            const match = entryFile.match(/src\/(.*)\/index-server\.js/);
             const pageName = match && match[1];
             if (pageName) {
                 entry[pageName] = entryFile;
@@ -93,7 +93,8 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name:'[name]_[hash:8].[ext]'
+                            name:'[name]_[hash:8].[ext]',
+                            esModule: false
                         }
                     }
                 ],

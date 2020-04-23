@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import ReactDOM from 'react-dom'
 import './search.less'
 import testimg from './test.gif'
 import './../../common/index.js'
@@ -13,7 +14,7 @@ class Search extends React.Component {
             Text: null
         }
     }
-    loadComponent() {
+    loadComponent = () => {
         import('./text.js').then((Text) => {
             console.log(Text)
             this.setState({
@@ -27,10 +28,13 @@ class Search extends React.Component {
             {
                 Text ? <Text /> : null
             }
-            <p>1212121{a()}12search 2222</p>
+            <p>1212{a()}12search 2222</p>
             <img src={testimg} alt="#" onClick={this.loadComponent.bind(this)}/>
             </div>)
     }
 }
 
-module.exports = Search
+ReactDOM.render(
+    <Search />,
+    document.getElementById('root')
+)

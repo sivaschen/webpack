@@ -1,10 +1,10 @@
 'use strict'
 
-import React from 'react'
-import './search.less'
-import testimg from './test.gif'
-import './../../common/index.js'
-import { a } from './tree-shaking'
+const React = require('react');
+require('./search.less');
+let logo = require('./test.jpg');
+require('./../../common/index.js');
+const { a } = require('./tree-shaking');
 
 class Search extends React.Component {
     constructor() {
@@ -28,9 +28,9 @@ class Search extends React.Component {
                 Text ? <Text /> : null
             }
             <p>1212121{a()}12search 2222</p>
-            <img src={testimg} alt="#" onClick={this.loadComponent.bind(this)}/>
+            <img src={ logo } onClick={this.loadComponent.bind(this)}/>
             </div>)
     }
 }
 
-module.exports = Search
+module.exports = <Search />;
