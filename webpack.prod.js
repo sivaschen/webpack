@@ -107,19 +107,19 @@ module.exports = {
             cssProcessor: require('cssnano')
         }),
         new CleanWebpackPlugin(),
-        new HtmlWebpackExternalsPlugin({
-            externals:[
-                {
-                    module:'react',
-                    entry:'http://11.url.cn/now/lib/15.1.0/react-with-addons.min.js?_bid=3123',
-                    global:'React'
-                },{
-                    module:'react-dom',
-                    entry:'http://11.url.cn/now/lib/15.1.0/react-dom.min.js?_bid=3123',
-                    global:'ReactDOM'
-                }
-            ]
-        }),
+        // new HtmlWebpackExternalsPlugin({
+        //     externals:[
+        //         {
+        //             module:'react',
+        //             entry:'http://11.url.cn/now/lib/15.1.0/react-with-addons.min.js?_bid=3123',
+        //             global:'React'
+        //         },{
+        //             module:'react-dom',
+        //             entry:'http://11.url.cn/now/lib/15.1.0/react-dom.min.js?_bid=3123',
+        //             global:'ReactDOM'
+        //         }
+        //     ]
+        // }),
         new FriendlyErrorsWebpackPlugin(),
         function () {
             this.hooks.done.tap('done', (stats) => {
