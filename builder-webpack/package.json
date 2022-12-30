@@ -19,7 +19,7 @@
     "eslint-plugin-import": "^2.20.2",
     "glob-all": "^3.2.1",
     "istanbul": "^0.4.5",
-    "mocha": "^6.2.3",
+    "mocha": "^10.2.0",
     "nyc": "^15.0.1",
     "rimraf": "^2.7.1"
   },
